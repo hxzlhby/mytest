@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book>
+    <title>php</title>
+    <date>
+        <day>29</day>
+        <month>9</month>
+        <years>2015</years>
+    </date>
+    <author>huang</author>
+    <year>2020</year>
+    <price>2000.00</price>
+    <age>20</age>
+    <conntry>cn</conntry>
+    <sex>male</sex>
+    <yes>yes</yes>
+</book>

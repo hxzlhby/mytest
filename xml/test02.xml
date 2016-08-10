@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<code>200</code>
+<success>1</success>
+<list><id>1</id>
+<name>hxz</name>
+<info><item id="0">1</item>
+<item id="1">2</item>
+<item id="2">3</item>
+<item id="3">4</item>
+<item id="4">5</item>
+</info>
+</list>
+</root>
