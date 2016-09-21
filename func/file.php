@@ -14,7 +14,7 @@ class file{
                 if(is_file($path.'/'.$item)){
                     $file['file'][] = iconv('gb2312','utf-8',$item);
                 }else if(is_dir($path.'/'.$item)){
-                    $file['dir'][] = $item;
+                    $file['dir'][] = iconv('gb2312','utf-8',$item);;
 //                    self::readDir($path.'/'.$item);
                 }
             }

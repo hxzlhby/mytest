@@ -1,31 +1,54 @@
 <?php
-/**
- * 策略模式
- * 策略模式设计帮助构建的对象不必自身包含逻辑，而是能够根据需要利用其他对象中的算法。
- * Created by PhpStorm.
- * User: 孝哲
- * Date: 2015/9/18
- * Time: 21:21
- */
+//主类
 class CD{
     protected $arr = array();
-    public function __construct($title,$author){
-        $this->arr['title'] = $title;
-        $this->arr['author'] = $author;
+    public function __construct($data){
+        $this->arr = $data;
     }
-    public function getInfo($obj){
+    
+    public function getCd($obj){
         return $obj->get($this->arr);
     }
 }
-class XML{
-    public function get($data){
-        echo '输出xml数据';
-    }
+//定义接口类
+interface data{
+    function get($data);
 }
-class JSON{
+//实现接口方式1
+class Json implements data{
     public function get($data){
         echo '输出json数据';
+        return json_encode($data);
     }
 }
-$cd = new CD('朋友','周华健');
-$cd->getInfo(new XML());
+//实现接口方式2
+class Xml implements data{
+    public function get($result){
+        $xml = '';
+        header('Content-Type:text/xml');
+        $xml .="<?xml version='1.0' encoding='UTF-8'?>\n";
+        $xml .="<root>\n";
+        $xml .=self::_buildXml($result);
+        $xml .="</root>";
+        return $xml;
+    }
+    private static function _buildXml($data){
+        $xml = $code = '';
+        foreach($data as $k=>$v){
+            if(is_numeric($k)){
+                $code = " id='{$k}'";
+                $k ='item';
+            }
+            $xml .="<{$k}{$code}>";
+            $xml .= is_array($v) ? self::_buildXml($v) : $v;
+            $xml .="</{$k}>\n";
+        }
+        return $xml;
+    }
+}
+
+$arr = array('name'=>'刘德华','data'=>array('title'=>'忘情水','year'=>'1998'));
+$obj = new CD($arr);
+$res = $obj->getCd(new Json());
+var_dump($res);
+
