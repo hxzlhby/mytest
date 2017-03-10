@@ -4,7 +4,7 @@
  * 单例模式的数据库类
  */
 class db {
-    private static $dsn = 'mysql:host=localhost;dbname=ceshi';
+    private static $dsn = 'mysql:host=localhost;dbname=beifen';
     public static $instance=null;
     private function __construct(){}
     private static function conn(){
@@ -26,8 +26,8 @@ $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT,false);
 //2:开启事物机制
 $pdo->beginTransaction();
 //3:进行事物操作
-$res1 = $pdo->exec("UPDATE onethink_wx_menu SET pid=pid-10 WHERE id=42");
-$res2 = $pdo->exec("UPDATE onethink_wx_menu SET pid=pid+10 WHERE id=43");
+$res1 = $pdo->exec("UPDATE brand SET modify_admin_id=modify_admin_id-10 WHERE id=1");
+$res2 = $pdo->exec("UPDATE brand SET modify_admin_id=modify_admin_id+10 WHERE id=30");
 //4:判断操作,决定是提交还是回滚
 if($res1 && $res2){
     $pdo->commit();//操作成功,提交事物
